@@ -4,6 +4,7 @@ import { Play, Pause, Music2, Clock, Activity } from 'lucide-react';
 import { Card } from './ui/card';
 import { Button } from './ui/button';
 import { tracks } from '../mock';
+import TiltCard from './TiltCard';
 
 const TrackCard = ({ track, isPlaying, onPlayPause }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -16,23 +17,24 @@ const TrackCard = ({ track, isPlaying, onPlayPause }) => {
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
-      <Card
-        className="group relative overflow-hidden bg-gradient-to-br from-gray-900 to-black border-gray-800 hover:border-cyan-500/50 transition-all duration-300 cursor-pointer interactive"
-        onClick={() => setIsExpanded(!isExpanded)}
-      >
-        {/* Background Image */}
-        <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-300">
-          <img
-            src={track.coverArt}
-            alt={track.title}
-            className="w-full h-full object-cover"
-          />
-        </div>
+      <TiltCard className="interactive">
+        <Card
+          className="group relative overflow-hidden bg-gradient-to-br from-gray-900 to-black border-gray-800 hover:border-cyan-500/50 transition-all duration-300 cursor-pointer"
+          onClick={() => setIsExpanded(!isExpanded)}
+        >
+          {/* Background Image */}
+          <div className="absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity duration-300">
+            <img
+              src={track.coverArt}
+              alt={track.title}
+              className="w-full h-full object-cover"
+            />
+          </div>
 
-        {/* Glow Effect */}
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-orange-500/10" />
-        </div>
+          {/* Glow Effect */}
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-orange-500/10" />
+          </div>
 
         <div className="relative p-6">
           <div className="flex items-start gap-4">
@@ -117,6 +119,7 @@ const TrackCard = ({ track, isPlaying, onPlayPause }) => {
           </AnimatePresence>
         </div>
       </Card>
+      </TiltCard>
     </motion.div>
   );
 };

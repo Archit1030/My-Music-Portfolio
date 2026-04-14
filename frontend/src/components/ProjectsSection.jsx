@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ExternalLink, Code, Layers } from 'lucide-react';
 import { Card } from './ui/card';
 import { projects } from '../mock';
+import TiltCard from './TiltCard';
 
 const ProjectCard = ({ project, index }) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -16,7 +17,8 @@ const ProjectCard = ({ project, index }) => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <Card className="group relative overflow-hidden bg-gradient-to-br from-gray-900 to-black border-gray-800 hover:border-cyan-500/50 transition-all duration-500 interactive cursor-pointer">
+      <TiltCard className="h-full">
+        <Card className="group relative overflow-hidden bg-gradient-to-br from-gray-900 to-black border-gray-800 hover:border-cyan-500/50 transition-all duration-500 interactive cursor-pointer h-full">
         {/* Project Thumbnail */}
         <div className="relative h-64 overflow-hidden">
           <motion.img
@@ -92,6 +94,7 @@ const ProjectCard = ({ project, index }) => {
           <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 rounded-lg" />
         </motion.div>
       </Card>
+      </TiltCard>
     </motion.div>
   );
 };
