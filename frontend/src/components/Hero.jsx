@@ -1,219 +1,224 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Play } from 'lucide-react';
+import { Play, ChevronDown } from 'lucide-react';
 import { Button } from './ui/button';
-import GlitchText from './GlitchText';
-import MagneticButton from './MagneticButton';
-import GenerativeBackground from './GenerativeBackground';
+
+const FloatingShape = ({ delay = 0, duration = 20, size = 100, position, color }) => {
+  return (
+    <motion.div
+      className="absolute"
+      style={{
+        width: size,
+        height: size,
+        ...position,
+        perspective: '1000px',
+        transformStyle: 'preserve-3d'
+      }}
+      animate={{
+        rotateX: [0, 360],
+        rotateY: [0, 360],
+        rotateZ: [0, 360],
+        y: [0, -30, 0]
+      }}
+      transition={{
+        duration: duration,
+        delay: delay,
+        repeat: Infinity,
+        ease: 'linear'
+      }}
+    >
+      <div
+        className="w-full h-full"
+        style={{
+          background: `linear-gradient(135deg, ${color}20, ${color}40)`,
+          backdropFilter: 'blur(20px)',
+          border: `1px solid ${color}30`,
+          borderRadius: '20px',
+          boxShadow: `0 20px 60px ${color}20`,
+          transform: 'rotateX(45deg) rotateZ(45deg)'
+        }}
+      />
+    </motion.div>
+  );
+};
 
 const Hero = ({ onEnter }) => {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const { scrollY } = useScroll();
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
-  const scale = useTransform(scrollY, [0, 300], [1, 0.8]);
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end start']
+  });
 
-  useEffect(() => {
-    const handleMouseMove = (e) => {
-      setMousePosition({
-        x: (e.clientX / window.innerWidth - 0.5) * 20,
-        y: (e.clientY / window.innerHeight - 0.5) * 20
-      });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
 
   return (
-    <motion.div 
+    <motion.div
+      ref={containerRef}
       className="relative h-screen w-full overflow-hidden bg-black"
-      style={{ opacity, scale }}
+      style={{ opacity }}
     >
-      {/* Noise/Grain Texture Overlay */}
-      <div 
-        className="absolute inset-0 opacity-30 mix-blend-overlay pointer-events-none"
-        style={{
-          backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 400 400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'3.5\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E")',
-          backgroundRepeat: 'repeat',
-          backgroundSize: '128px 128px'
-        }}
+      {/* Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black" />
+      
+      {/* Radial Spotlight */}
+      <div className="absolute inset-0 bg-gradient-radial from-cyan-500/10 via-transparent to-transparent" />
+
+      {/* 3D Floating Shapes */}
+      <FloatingShape 
+        delay={0} 
+        duration={25} 
+        size={200} 
+        position={{ top: '10%', left: '10%' }} 
+        color="#00f0ff"
+      />
+      <FloatingShape 
+        delay={5} 
+        duration={30} 
+        size={150} 
+        position={{ top: '60%', right: '15%' }} 
+        color="#ff6b35"
+      />
+      <FloatingShape 
+        delay={10} 
+        duration={28} 
+        size={120} 
+        position={{ bottom: '20%', left: '20%' }} 
+        color="#0ea5e9"
       />
 
-      {/* Generative Canvas Background */}
-      <GenerativeBackground />
-
-      {/* Massive Gradient Orbs with Parallax */}
+      {/* Main Content */}
       <motion.div 
-        className="absolute top-0 left-0 w-[800px] h-[800px] bg-cyan-500/30 rounded-full blur-[120px]"
-        animate={{
-          x: mousePosition.x * 2,
-          y: mousePosition.y * 2,
-          scale: [1, 1.2, 1],
-          opacity: [0.3, 0.5, 0.3]
-        }}
-        transition={{
-          x: { type: 'spring', stiffness: 50 },
-          y: { type: 'spring', stiffness: 50 },
-          scale: { duration: 4, repeat: Infinity },
-          opacity: { duration: 3, repeat: Infinity }
-        }}
-      />
-      <motion.div 
-        className="absolute bottom-0 right-0 w-[800px] h-[800px] bg-orange-500/30 rounded-full blur-[120px]"
-        animate={{
-          x: -mousePosition.x * 2,
-          y: -mousePosition.y * 2,
-          scale: [1, 1.3, 1],
-          opacity: [0.3, 0.6, 0.3]
-        }}
-        transition={{
-          x: { type: 'spring', stiffness: 50 },
-          y: { type: 'spring', stiffness: 50 },
-          scale: { duration: 5, repeat: Infinity },
-          opacity: { duration: 4, repeat: Infinity }
-        }}
-      />
-
-      {/* Radial gradient overlay for depth */}
-      <div className="absolute inset-0 bg-gradient-radial from-transparent via-black/40 to-black/80 pointer-events-none" />
-
-      {/* Content Container with Parallax */}
-      <div className="relative z-10 h-full flex flex-col items-center justify-center px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.3 }}
-          className="text-center"
-          style={{
-            transform: `translateY(${mousePosition.y}px)`
-          }}
-        >
-          {/* Experimental Title with Glitch Effect */}
+        className="relative z-10 h-full flex flex-col items-center justify-center px-6"
+        style={{ y, scale }}
+      >
+        <div className="text-center max-w-6xl mx-auto">
+          {/* Small Label */}
           <motion.div
-            className="mb-6"
-            animate={{
-              y: [0, -10, 0]
-            }}
-            transition={{
-              duration: 3,
-              repeat: Infinity,
-              ease: 'easeInOut'
-            }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mb-8"
           >
-            <GlitchText
-              text="KAAGZ"
-              className="text-[12rem] md:text-[16rem] font-black tracking-tighter leading-none"
+            <span className="inline-block px-4 py-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full text-cyan-400 text-sm font-medium tracking-wider backdrop-blur-sm">
+              MUSIC PRODUCER & CREATIVE DEVELOPER
+            </span>
+          </motion.div>
+
+          {/* Main Title with 3D Effect */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="mb-6 perspective-1000"
+          >
+            <h1 
+              className="text-8xl md:text-[12rem] font-black tracking-tight leading-none mb-4"
               style={{
                 fontFamily: '"Bebas Neue", sans-serif',
-                background: 'linear-gradient(135deg, #00f0ff 0%, #ff6b35 100%)',
+                background: 'linear-gradient(180deg, #ffffff 0%, #00f0ff 50%, #0ea5e9 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
-                filter: 'drop-shadow(0 0 60px rgba(0,240,255,0.6))'
+                backgroundClip: 'text',
+                textShadow: '0 0 80px rgba(0,240,255,0.3)',
+                transform: 'translateZ(0)'
               }}
-            />
-          </motion.div>
-
-          {/* Animated Tagline with Letter Spacing Animation */}
-          <motion.div
-            initial={{ opacity: 0, letterSpacing: '0.5em' }}
-            animate={{ opacity: 1, letterSpacing: '0.2em' }}
-            transition={{ duration: 1.5, delay: 0.8 }}
-            className="mb-16"
-          >
-            <p
-              className="text-2xl md:text-3xl text-gray-300 tracking-[0.2em] uppercase"
-              style={{ fontFamily: '"Exo 2", sans-serif' }}
             >
-              <span className="inline-block">
-                <motion.span
-                  animate={{ opacity: [0.5, 1, 0.5] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="text-cyan-400"
-                >
-                  Music Producer
-                </motion.span>
-              </span>
-              <span className="mx-4 text-cyan-400">×</span>
-              <span className="inline-block">
-                <motion.span
-                  animate={{ opacity: [0.5, 1, 0.5] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-                  className="text-orange-400"
-                >
-                  Creative Developer
-                </motion.span>
-              </span>
-            </p>
+              KAAGZ
+            </h1>
           </motion.div>
 
-          {/* Magnetic CTA Button */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 1.2, type: 'spring', stiffness: 200 }}
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="text-xl md:text-2xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed"
+            style={{ fontFamily: '"Inter", sans-serif' }}
           >
-            <MagneticButton
+            Crafting immersive soundscapes and building innovative digital experiences
+            that push creative boundaries.
+          </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          >
+            <Button
               onClick={onEnter}
-              className="inline-block"
+              size="lg"
+              className="group relative px-8 py-6 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold rounded-lg overflow-hidden transition-all duration-300 shadow-lg shadow-cyan-500/25 hover:shadow-cyan-400/40"
             >
-              <Button
-                size="lg"
-                className="group relative bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white px-16 py-8 text-xl font-bold rounded-full shadow-[0_0_30px_rgba(0,240,255,0.5)] hover:shadow-[0_0_50px_rgba(0,240,255,0.8)] transition-all duration-300 interactive overflow-hidden"
-              >
-                {/* Animated background shimmer */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                  animate={{
-                    x: ['-200%', '200%']
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    repeatDelay: 1
-                  }}
-                />
-                <span className="relative z-10 flex items-center gap-3">
-                  <Play className="w-7 h-7 group-hover:scale-125 transition-transform" fill="white" />
-                  <span className="tracking-wider">ENTER EXPERIENCE</span>
-                </span>
-              </Button>
-            </MagneticButton>
-          </motion.div>
-        </motion.div>
+              <span className="relative z-10 flex items-center gap-2">
+                <Play className="w-5 h-5" fill="white" />
+                Explore Work
+              </span>
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
+                initial={{ x: '-100%' }}
+                whileHover={{ x: '100%' }}
+                transition={{ duration: 0.6 }}
+              />
+            </Button>
 
-        {/* Experimental Scroll Indicator */}
+            <Button
+              size="lg"
+              variant="outline"
+              className="px-8 py-6 border-2 border-gray-700 hover:border-cyan-500 bg-transparent hover:bg-cyan-500/10 text-white font-semibold rounded-lg transition-all duration-300"
+            >
+              View Projects
+            </Button>
+          </motion.div>
+
+          {/* Stats or Tags */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1 }}
+            className="mt-16 flex flex-wrap justify-center gap-8 text-sm text-gray-500"
+          >
+            <div className="flex flex-col items-center">
+              <span className="text-2xl font-bold text-cyan-400 mb-1">120+</span>
+              <span>Tracks Produced</span>
+            </div>
+            <div className="w-px h-12 bg-gray-800" />
+            <div className="flex flex-col items-center">
+              <span className="text-2xl font-bold text-cyan-400 mb-1">5+</span>
+              <span>Years Experience</span>
+            </div>
+            <div className="w-px h-12 bg-gray-800" />
+            <div className="flex flex-col items-center">
+              <span className="text-2xl font-bold text-cyan-400 mb-1">30+</span>
+              <span>Collaborations</span>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.8 }}
-          className="absolute bottom-12 left-1/2 transform -translate-x-1/2"
+          transition={{ delay: 1.2, duration: 0.8 }}
+          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
         >
           <motion.div
-            animate={{
-              y: [0, 15, 0],
-              opacity: [0.3, 1, 0.3]
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: 'easeInOut'
-            }}
-            className="flex flex-col items-center gap-3"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="flex flex-col items-center gap-2 cursor-pointer"
+            onClick={onEnter}
           >
-            <div className="w-[2px] h-16 bg-gradient-to-b from-transparent via-cyan-400 to-transparent" />
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 3, repeat: Infinity, ease: 'linear' }}
-              className="w-8 h-8 border-2 border-cyan-400 rounded-full flex items-center justify-center"
-            >
-              <div className="w-2 h-2 bg-cyan-400 rounded-full" />
-            </motion.div>
+            <span className="text-xs text-gray-500 uppercase tracking-wider">Scroll</span>
+            <ChevronDown className="w-5 h-5 text-cyan-400" />
           </motion.div>
         </motion.div>
-      </div>
+      </motion.div>
 
-      {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to transparent pointer-events-none" />
+      {/* Bottom Gradient Fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none" />
     </motion.div>
   );
 };
