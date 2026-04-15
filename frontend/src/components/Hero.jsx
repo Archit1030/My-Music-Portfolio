@@ -125,7 +125,7 @@ const Hero = ({ onEnter }) => {
                 transform: 'translateZ(0)'
               }}
             >
-              KAAGZ
+              ARCHIT
             </h1>
           </motion.div>
 
@@ -137,8 +137,7 @@ const Hero = ({ onEnter }) => {
             className="text-xl md:text-2xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed"
             style={{ fontFamily: '"Inter", sans-serif' }}
           >
-            Crafting immersive soundscapes and building innovative digital experiences
-            that push creative boundaries.
+            Heyy there ! I am just a computer Science student exploring music composition. Thanks for stopping by ;)
           </motion.p>
 
           {/* CTA Buttons */}
@@ -182,17 +181,17 @@ const Hero = ({ onEnter }) => {
             className="mt-16 flex flex-wrap justify-center gap-8 text-sm text-gray-500"
           >
             <div className="flex flex-col items-center">
-              <span className="text-2xl font-bold text-cyan-400 mb-1">120+</span>
+              <span className="text-2xl font-bold text-cyan-400 mb-1">30+</span>
               <span>Tracks Produced</span>
             </div>
             <div className="w-px h-12 bg-gray-800" />
             <div className="flex flex-col items-center">
-              <span className="text-2xl font-bold text-cyan-400 mb-1">5+</span>
+              <span className="text-2xl font-bold text-cyan-400 mb-1">3+</span>
               <span>Years Experience</span>
             </div>
             <div className="w-px h-12 bg-gray-800" />
             <div className="flex flex-col items-center">
-              <span className="text-2xl font-bold text-cyan-400 mb-1">30+</span>
+              <span className="text-2xl font-bold text-cyan-400 mb-1">10+</span>
               <span>Collaborations</span>
             </div>
           </motion.div>

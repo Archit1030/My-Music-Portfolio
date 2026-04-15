@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import "@/App.css";
 import Hero from "@/components/Hero";
 import MusicSection from "@/components/MusicSection";
+import GestureControlSection from "@/components/GestureControlSection";
 import AboutSection from "@/components/AboutSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import Footer from "@/components/Footer";
 import CustomCursor from "@/components/CustomCursor";
 import { motion } from "framer-motion";
+import { MusicPlayerProvider } from "@/context/MusicPlayerContext";
 
 function App() {
   const [hasEntered, setHasEntered] = useState(false);
@@ -23,6 +25,7 @@ function App() {
   };
 
   return (
+    <MusicPlayerProvider>
     <div className="App min-h-screen bg-black relative">
       {/* Film grain texture overlay */}
       <div 
@@ -51,6 +54,16 @@ function App() {
         <MusicSection />
       </motion.div>
       
+      <motion.div
+        id="gesture"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.8 }}
+      >
+        <GestureControlSection />
+      </motion.div>
+
       <motion.div 
         id="about"
         initial={{ opacity: 0 }}
@@ -74,6 +87,7 @@ function App() {
       {/* Footer */}
       <Footer />
     </div>
+    </MusicPlayerProvider>
   );
 }
 

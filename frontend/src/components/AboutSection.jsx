@@ -9,7 +9,7 @@ const StatCard = ({ stat, index }) => (
     whileInView={{ opacity: 1, scale: 1 }}
     viewport={{ once: true }}
     transition={{ duration: 0.5, delay: index * 0.1 }}
-    className="relative group"
+    className="relative group w-48"
   >
     <div className="bg-gradient-to-br from-gray-900 to-black border border-gray-800 group-hover:border-cyan-500/50 rounded-xl p-6 transition-all duration-300">
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-orange-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -90,7 +90,7 @@ const AboutSection = () => {
         </motion.div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
+        <div className="flex flex-wrap justify-center gap-4 mb-16">
           {aboutData.stats.map((stat, index) => (
             <StatCard key={index} stat={stat} index={index} />
           ))}

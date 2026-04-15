@@ -3,69 +3,69 @@
 export const tracks = [
   {
     id: 1,
-    title: "Neon Dreams",
+    title: "Bijli Si Tu",
     genre: "Electronic/EDM",
-    duration: "3:42",
-    bpm: 128,
-    releaseDate: "2024",
-    coverArt: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=400&h=400&fit=crop",
-    audioUrl: "", // Placeholder - will be replaced with actual audio
-    description: "High-energy electronic track with pulsing synths and driving basslines"
+    duration: "3:30",
+    bpm: 140,
+    releaseDate: "To be released",
+    coverArt: "/images/BST.png",
+    audioUrl: "/audio/BST.wav",
+    description: "High-energy electronic track with electrifying synths and driving basslines"
   },
   {
     id: 2,
-    title: "Trap City",
-    genre: "Hip-Hop/Trap",
+    title: "Baatein Adhuri",
+    genre: "Trap",
     duration: "2:58",
-    bpm: 140,
-    releaseDate: "2024",
-    coverArt: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&h=400&fit=crop",
-    audioUrl: "",
-    description: "Hard-hitting trap beat with crisp hi-hats and deep 808s"
+    bpm: 81,
+    releaseDate: "2025",
+    coverArt: "/images/BAAD.jpg",
+    audioUrl: "/audio/BAAD.wav",
+    description: "Moody trap production with deep 808s and atmospheric textures"
   },
   {
     id: 3,
-    title: "Cyber Pulse",
-    genre: "Electronic/Bass",
-    duration: "4:15",
-    bpm: 150,
-    releaseDate: "2023",
-    coverArt: "https://images.unsplash.com/photo-1571974599782-87624638275e?w=400&h=400&fit=crop",
-    audioUrl: "",
-    description: "Futuristic bass-heavy track with glitchy sound design"
+    title: "Pyaar ka Naya Safar",
+    genre: "Indie",
+    duration: "4:00",
+    bpm: 100,
+    releaseDate: "2026",
+    coverArt: "/images/PKNS.jpeg",
+    audioUrl: "/audio/PKNS.wav",
+    description: "A heartfelt indie journey blending warm melodies and emotional lyricism"
   },
   {
     id: 4,
-    title: "Urban Nights",
-    genre: "Hip-Hop/Chill",
-    duration: "3:28",
-    bpm: 85,
-    releaseDate: "2023",
-    coverArt: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop",
-    audioUrl: "",
-    description: "Smooth atmospheric beat with jazzy samples and laid-back groove"
+    title: "Diary",
+    genre: "Indie",
+    duration: "3:45",
+    bpm: 120,
+    releaseDate: "To be released",
+    coverArt: "/images/Diary.jpeg",
+    audioUrl: "/audio/Diary.wav",
+    description: "Intimate indie track with introspective storytelling and lush production"
   },
   {
     id: 5,
-    title: "Hyperdrive",
-    genre: "Electronic/Techno",
-    duration: "5:03",
-    bpm: 135,
-    releaseDate: "2024",
-    coverArt: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=400&h=400&fit=crop",
-    audioUrl: "",
-    description: "Relentless techno journey with evolving textures and hypnotic rhythms"
+    title: "Drunken",
+    genre: "Trap",
+    duration: "3:10",
+    bpm: 150,
+    releaseDate: "2026",
+    coverArt: "/images/Drunken.png",
+    audioUrl: "/audio/Drunken.wav",
+    description: "A slow boom-bap trap banger with catchy melody and drums"
   },
   {
     id: 6,
-    title: "Midnight Run",
-    genre: "Trap/Electronic",
-    duration: "3:11",
-    bpm: 145,
+    title: "Balam",
+    genre: "Pop",
+    duration: "3:20",
+    bpm: 90,
     releaseDate: "2023",
-    coverArt: "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=400&h=400&fit=crop",
-    audioUrl: "",
-    description: "Fusion of trap and electronic elements with cinematic atmosphere"
+    coverArt: "/images/Balam.jpeg",
+    audioUrl: "/audio/Balam.wav",
+    description: "A pop banger to vive on"
   }
 ];
 
@@ -109,7 +109,7 @@ export const projects = [
 ];
 
 export const aboutData = {
-  name: "Kaagz",
+  name: "Archit",
   tagline: "Music Producer & Creative Developer",
   bio: "Blending cutting-edge sound design with innovative web experiences. Specializing in electronic music production and interactive audio-visual installations. Pushing the boundaries where music meets technology.",
   skills: [
@@ -121,9 +121,8 @@ export const aboutData = {
     "UI/UX Development"
   ],
   stats: [
-    { label: "Tracks Produced", value: "120+" },
-    { label: "Years Experience", value: "5+" },
-    { label: "Collaborations", value: "30+" },
-    { label: "Live Sets", value: "50+" }
+    { label: "Tracks Produced", value: "30+" },
+    { label: "Years Experience", value: "3+" },
+    { label: "Collaborations", value: "10+" }
   ]
 };
