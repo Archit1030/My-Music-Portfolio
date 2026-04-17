@@ -4,7 +4,7 @@ A modern, interactive music portfolio website featuring hand gesture controls po
 
 ![Music Portfolio](https://img.shields.io/badge/React-19.0.0-blue)
 ![MediaPipe](https://img.shields.io/badge/MediaPipe-Hands-green)
-![License](https://img.shields.io/badge/license-MIT-blue)
+![Vercel](https://img.shields.io/badge/Deploy-Vercel-black)
 
 ## ✨ Features
 
@@ -17,7 +17,7 @@ A modern, interactive music portfolio website featuring hand gesture controls po
 ### 👋 Gesture Control
 - **Hand gesture recognition** using MediaPipe Hands
 - Control music playback without touching your device
-- Real-time hand skeleton visualization
+- Real-time hand skeleton visualization on black background
 - Supported gestures:
   - 👋 **Open Palm** - Play
   - ✊ **Fist** - Pause
@@ -33,63 +33,31 @@ A modern, interactive music portfolio website featuring hand gesture controls po
 - Film grain texture overlay
 - Responsive grid layouts
 
-### 📱 Sections
-- **Hero** - Animated landing section
-- **Music** - Featured tracks with playback
-- **Gesture Control** - Interactive camera-based controls
-- **About** - Personal information and bio
-- **Projects** - Portfolio showcase
-- **Footer** - Contact and social links
-
-## 🚀 Getting Started
+## 🚀 Quick Start
 
 ### Prerequisites
-
 - Node.js (v18 or higher)
 - npm or yarn
-- Python 3.8+ (for backend)
 - Webcam (for gesture control features)
 
 ### Installation
 
-1. **Clone the repository**
 ```bash
+# Clone the repository
 git clone https://github.com/Archit1030/My-Music-Portfolio.git
 cd My-Music-Portfolio
-```
 
-2. **Install frontend dependencies**
-```bash
-cd frontend
+# Install dependencies
 npm install
-```
 
-3. **Install backend dependencies**
-```bash
-cd ../backend
-pip install -r requirements.txt
-```
-
-### Running the Application
-
-1. **Start the backend server**
-```bash
-cd backend
-python server.py
-```
-
-2. **Start the frontend development server**
-```bash
-cd frontend
+# Start development server
 npm start
 ```
 
-3. **Open your browser**
-Navigate to `http://localhost:3000`
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## 🛠️ Tech Stack
 
-### Frontend
 - **React 19** - UI framework
 - **Framer Motion** - Animations
 - **MediaPipe Hands** - Hand gesture recognition
@@ -97,106 +65,73 @@ Navigate to `http://localhost:3000`
 - **Radix UI** - Component primitives
 - **Lucide React** - Icons
 
-### Backend
-- **Flask** - Python web framework
-- **Flask-CORS** - Cross-origin resource sharing
-
-### Build Tools
-- **CRACO** - Create React App Configuration Override
-- **PostCSS** - CSS processing
-- **Autoprefixer** - CSS vendor prefixing
-
 ## 📁 Project Structure
 
 ```
 My-Music-Portfolio/
-├── frontend/
-│   ├── public/
-│   │   ├── audio/          # Music files
-│   │   ├── images/         # Image assets
-│   │   └── index.html
-│   ├── src/
-│   │   ├── components/     # React components
-│   │   │   ├── Hero.jsx
-│   │   │   ├── MusicSection.jsx
-│   │   │   ├── GestureControlSection.jsx
-│   │   │   ├── AboutSection.jsx
-│   │   │   ├── ProjectsSection.jsx
-│   │   │   └── Footer.jsx
-│   │   ├── context/        # React context
-│   │   │   └── MusicPlayerContext.jsx
-│   │   ├── hooks/          # Custom hooks
-│   │   │   └── useGestureDetection.js
-│   │   ├── utils/          # Utility functions
-│   │   │   └── gestureRecognizer.js
-│   │   ├── App.js
-│   │   └── index.js
-│   └── package.json
-├── backend/
-│   ├── server.py           # Flask server
-│   └── requirements.txt
+├── public/
+│   ├── audio/              # Music files
+│   ├── images/             # Image assets
+│   └── index.html
+├── src/
+│   ├── components/         # React components
+│   ├── context/            # React context
+│   ├── hooks/              # Custom hooks
+│   ├── utils/              # Utility functions
+│   ├── App.js
+│   └── index.js
+├── package.json
 └── README.md
 ```
 
 ## 🎮 Using Gesture Controls
 
-1. Click **"Activate Gesture Control"** in the Gesture Control section
-2. Allow camera access when prompted
+1. Click **"Activate Gesture Control"**
+2. Allow camera access
 3. Position your hand in front of the camera
-4. Perform gestures to control music playback:
-   - Show your **open palm** to play
-   - Make a **fist** to pause
-   - **Thumbs up** to increase volume
-   - **Thumbs down** to decrease volume
-   - **Swipe right** for next track
-   - **Swipe left** for previous track
+4. Perform gestures to control playback
 
 ## 🎨 Customization
 
 ### Adding Your Music
-1. Place your audio files in `frontend/public/audio/`
-2. Update `frontend/src/mock.js` with your track information:
+
+1. Place audio files in `public/audio/`
+2. Update `src/mock.js`:
 
 ```javascript
 {
   id: 'unique-id',
   title: 'Track Title',
   genre: 'Genre',
-  duration: 180, // in seconds
+  duration: 180,
   audioUrl: '/audio/your-track.mp3',
   coverArt: '/images/cover.jpg'
 }
 ```
 
-### Styling
-- Modify `frontend/src/App.css` for global styles
-- Update Tailwind configuration in `frontend/tailwind.config.js`
-- Customize colors and themes in component files
+## 🚀 Deployment
 
-## 🔧 Configuration
+### Deploy to Vercel (Recommended - FREE)
 
-### Environment Variables
-Create a `.env` file in the frontend directory:
+1. Push code to GitHub
+2. Go to [vercel.com](https://vercel.com)
+3. Import your repository
+4. Click Deploy
 
-```env
-REACT_APP_BACKEND_URL=http://localhost:5000
-```
+**That's it!** Your site is live at `https://your-project.vercel.app`
 
-### MediaPipe Configuration
-Adjust gesture detection sensitivity in `frontend/src/hooks/useGestureDetection.js`:
+### Other Options
+- **Netlify** - Free hosting
+- **GitHub Pages** - Free hosting
+- **Cloudflare Pages** - Free hosting
 
-```javascript
-hands.setOptions({
-  maxNumHands: 1,
-  modelComplexity: 1,
-  minDetectionConfidence: 0.7,
-  minTrackingConfidence: 0.5,
-});
-```
+All options are **100% FREE** for portfolios!
 
-## 📝 License
+## 📝 Available Scripts
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+- `npm start` - Start development server
+- `npm run build` - Build for production
+- `npm test` - Run tests
 
 ## 👤 Author
 
@@ -205,29 +140,13 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 🙏 Acknowledgments
 
-- [MediaPipe](https://google.github.io/mediapipe/) for hand tracking
-- [Unsplash](https://unsplash.com/) for images
-- [Lucide](https://lucide.dev/) for icons
-- [Framer Motion](https://www.framer.com/motion/) for animations
+- [MediaPipe](https://google.github.io/mediapipe/) - Hand tracking
+- [Framer Motion](https://www.framer.com/motion/) - Animations
+- [Lucide](https://lucide.dev/) - Icons
 
-## 🐛 Known Issues
+## 📝 License
 
-- Gesture detection requires good lighting conditions
-- Camera must be enabled for gesture controls to work
-- Some gestures may require practice for consistent detection
-
-## 🚧 Future Enhancements
-
-- [ ] Add more gesture types
-- [ ] Implement playlist management
-- [ ] Add audio visualization effects
-- [ ] Support for multiple hand tracking
-- [ ] Mobile gesture controls optimization
-- [ ] Dark/Light theme toggle
-
-## 📞 Support
-
-For support, email your-email@example.com or open an issue in the GitHub repository.
+MIT License - feel free to use this project for your own portfolio!
 
 ---
 
