@@ -9,7 +9,7 @@ export const tracks = [
     bpm: 140,
     releaseDate: "To be released",
     coverArt: "/images/BST.png",
-    audioUrl: "/audio/BST.wav",
+    audioUrl: "/audio/BST.mp3",
     description: "High-energy electronic track with electrifying synths and driving basslines"
   },
   {
@@ -20,7 +20,7 @@ export const tracks = [
     bpm: 81,
     releaseDate: "2025",
     coverArt: "/images/BAAD.jpg",
-    audioUrl: "/audio/BAAD.wav",
+    audioUrl: "/audio/BAAD.mp3",
     description: "Moody trap production with deep 808s and atmospheric textures"
   },
   {
@@ -31,7 +31,7 @@ export const tracks = [
     bpm: 100,
     releaseDate: "2026",
     coverArt: "/images/PKNS.jpeg",
-    audioUrl: "/audio/PKNS.wav",
+    audioUrl: "/audio/PKNS.mp3",
     description: "A heartfelt indie journey blending warm melodies and emotional lyricism"
   },
   {
@@ -42,7 +42,7 @@ export const tracks = [
     bpm: 120,
     releaseDate: "To be released",
     coverArt: "/images/Diary.jpeg",
-    audioUrl: "/audio/Diary.wav",
+    audioUrl: "/audio/Diary.mp3",
     description: "Intimate indie track with introspective storytelling and lush production"
   },
   {
@@ -53,7 +53,7 @@ export const tracks = [
     bpm: 150,
     releaseDate: "2026",
     coverArt: "/images/Drunken.png",
-    audioUrl: "/audio/Drunken.wav",
+    audioUrl: "/audio/Drunken.mp3",
     description: "A slow boom-bap trap banger with catchy melody and drums"
   },
   {
@@ -64,7 +64,7 @@ export const tracks = [
     bpm: 90,
     releaseDate: "2023",
     coverArt: "/images/Balam.jpeg",
-    audioUrl: "/audio/Balam.wav",
+    audioUrl: "/audio/Balam.mp3",
     description: "A pop banger to vive on"
   }
 ];
