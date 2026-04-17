@@ -2,9 +2,16 @@
 
 A modern, interactive music portfolio website featuring hand gesture controls powered by MediaPipe. Built with React, this portfolio showcases music production work with an innovative gesture-based music player interface.
 
-![Music Portfolio](https://img.shields.io/badge/React-19.0.0-blue)
-![MediaPipe](https://img.shields.io/badge/MediaPipe-Hands-green)
-![Vercel](https://img.shields.io/badge/Deploy-Vercel-black)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-success?style=for-the-badge)](https://my-music-portfolio-delta.vercel.app/)
+[![React](https://img.shields.io/badge/React-19.0.0-blue?style=for-the-badge&logo=react)](https://reactjs.org/)
+[![MediaPipe](https://img.shields.io/badge/MediaPipe-Hands-green?style=for-the-badge)](https://google.github.io/mediapipe/)
+[![Vercel](https://img.shields.io/badge/Deploy-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com)
+
+## 🌐 Live Demo
+
+**[View Live Site →](https://my-music-portfolio-delta.vercel.app/)**
+
+Experience the interactive music portfolio with hand gesture controls!
 
 ## ✨ Features
 
@@ -147,6 +154,13 @@ All options are **100% FREE** for portfolios!
 ## 📝 License
 
 MIT License - feel free to use this project for your own portfolio!
+
+---
+
+## 🔗 Links
+
+- **Live Demo**: [https://my-music-portfolio-delta.vercel.app/](https://my-music-portfolio-delta.vercel.app/)
+- **GitHub**: [https://github.com/Archit1030/My-Music-Portfolio](https://github.com/Archit1030/My-Music-Portfolio)
 
 ---
 
